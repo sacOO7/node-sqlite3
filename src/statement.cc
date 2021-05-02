@@ -810,7 +810,8 @@ Napi::Value Statement::RowToJS(Napi::Env env, Row* row) {
 
         switch (field->type) {
             case SQLITE_INTEGER: {
-                value = Napi::Number::New(env, ((Values::Integer*)field)->value);
+                std::string s = std::to_string(((Values::Integer*)field)->value);
+                value = Napi::String::New(env, s.c_str(), s.size());
             } break;
             case SQLITE_FLOAT: {
                 value = Napi::Number::New(env, ((Values::Float*)field)->value);

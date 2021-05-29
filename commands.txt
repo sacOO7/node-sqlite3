@@ -1,1 +1,15 @@
 https://neon-bindings.com/docs/publishing/
+
+Draft release
+
+node-pre-gyp configure
+node-pre-gyp build
+node-pre-gyp package
+node-pre-gyp-github publish
+
+Prod release
+
+node-pre-gyp configure
+node-pre-gyp build
+node-pre-gyp package
+node-pre-gyp-github publish --release

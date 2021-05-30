@@ -62,6 +62,7 @@
     "node-gyp": "7.x"
   },
   "scripts": {
+    "clean": "node-pre-gyp clean",
     "build": "node-pre-gyp build",
     "install": "node-pre-gyp install --fallback-to-build",
     "pretest": "node test/support/createdb.js",

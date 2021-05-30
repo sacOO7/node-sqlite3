@@ -11,5 +11,7 @@ dir nw
 set PATH=nw;%PATH%
 call node-pre-gyp rebuild --runtime=node-webkit --target=%nw_version% --target_arch=ia32
 call node-pre-gyp package testpackage --runtime=node-webkit --target=%nw_version% --target_arch=ia32
-if not "%CM%" == "%CM:[publish binary]=%" call node-pre-gyp publish --msvs_version=2013 --runtime=node-webkit --target=%nw_version% --target_arch=ia32
+if not "%CM%" == "%CM:[publish binary]=%"
+call node-pre-gyp package --msvs_version=2013 --runtime=node-webkit --target=%nw_version% --target_arch=ia32
+call npm run publish
 :end

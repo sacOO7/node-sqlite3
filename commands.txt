@@ -5,11 +5,11 @@ Draft release
 node-pre-gyp configure
 node-pre-gyp build
 node-pre-gyp package
-node-pre-gyp-github publish
+node-pre-gyp-github publish // creates/updates release
 
 Prod release
 
 node-pre-gyp configure
 node-pre-gyp build
 node-pre-gyp package
-node-pre-gyp-github publish --release
+node-pre-gyp-github publish --release // creates/updates release

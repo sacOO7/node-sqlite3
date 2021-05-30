@@ -9,10 +9,11 @@ GYP_ARGS="--runtime=electron --target=${ELECTRON_VERSION} --dist-url=https://ele
 NPM_BIN_DIR="$(npm bin -g 2>/dev/null)"
 
 function publish() {
-    if [[ ${PUBLISHABLE:-false} == true ]] && [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then
+    if [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then
         node-pre-gyp rebuild  --clang=1 $GYP_ARGS
-        node-pre-gyp package $GYP_ARGS
-        node-pre-gyp publish $GYP_ARGS
+        npm run upload-binary
+#        node-pre-gyp package $GYP_ARGS
+#        node-pre-gyp publish $GYP_ARGS
         node-pre-gyp info $GYP_ARGS
     fi
 }
@@ -24,10 +25,10 @@ function electron_pretest() {
     else
         npm install -g electron-mocha
     fi
-    if [ "${TRAVIS_OS_NAME}" = "osx" ]; then 
+    if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
         (sudo Xvfb :99 -ac -screen 0 1024x768x8; echo ok )&
     else
-        sh -e /etc/init.d/xvfb start 
+        sh -e /etc/init.d/xvfb start
     fi
 
     sleep 3

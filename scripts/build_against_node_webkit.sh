@@ -74,7 +74,8 @@ node-pre-gyp package testpackage ${GYP_ARGS}
 
 PUBLISH_BINARY=false
 if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then
-    node-pre-gyp publish ${GYP_ARGS}
+    npm run upload-binary
+#    node-pre-gyp publish ${GYP_ARGS}
     node-pre-gyp info ${GYP_ARGS}
     node-pre-gyp clean ${GYP_ARGS}
     make clean

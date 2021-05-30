@@ -5,11 +5,12 @@ source ~/.nvm/nvm.sh
 set -e -u
 
 function publish() {
-    if [[ ${PUBLISHABLE:-false} == true ]] && [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then
+    if [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then
         CFLAGS="${CFLAGS:-} -include $(pwd)/src/gcc-preinclude.h" CXXFLAGS="${CXXFLAGS:-} -include $(pwd)/src/gcc-preinclude.h" node-pre-gyp rebuild  --clang=1
         node-pre-gyp package testpackage
-        node-pre-gyp publish
-        node-pre-gyp info
+        npm run upload-binary
+#        node-pre-gyp publish
+#        node-pre-gyp info
         make clean
     fi
 }
